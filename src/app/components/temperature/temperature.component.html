@@ -1,0 +1,18 @@
+<div class="banner-left">
+  
+  <div class="column1">
+    <img src="{{tempInfo.currentWeatherImageURL}}" id="cond-img" alt="weather_image" />
+  </div>
+  <div class="column2" id="temp-disp">
+    <div class="col2_1">
+      <span id="tempcel">{{tempInfo.temperatureInCelcius}}</span>
+    </div>
+    <div class="col2_1">
+      <span id="tempfah">{{tempInfo.temperatureInFahrenheit}}</span>
+    </div> 
+    <div class="w3-show-inline-block" >
+     <button id="cel">&#8451;</button>
+     <button id="fah">&#8457;</button>
+    </div>
+  </div>
+</div>
