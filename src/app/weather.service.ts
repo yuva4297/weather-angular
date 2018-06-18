@@ -12,6 +12,9 @@ import { ITemperature } from './models/temperature';
 export class WeatherService {
   summary: ISummary;
   tpw: Itpw;
+  tempArray: Array<any>
+  chartdetails: Array<any>;
+  
   temperature: ITemperature;
   dayWiseMap: any;
   dayTileList: Array<IDayTile>;
@@ -54,6 +57,13 @@ export class WeatherService {
           day: moment(data.list[0].dt * 1000).format("dddd"),
           weatherCondition: data.list[0].weather[0].description
         };
+        this.chartdetails=[];
+      this.dayWiseMap.forEach(element => {
+        
+      this.tempArray.push(Math.round(element.main.temp-270));
+      this.tempArray.push(moment(element.dt * 1000).format('dddd, h:mm a'));
+      this.chartdetails.push(this.tempArray);
+      this.tempArray = [];
         this.tpw = {
           temperature: _.round((parseFloat(data.list[0].main.temp)-270),2),
           pressure: parseInt(data.list[0].main.pressure),
@@ -111,8 +121,24 @@ export class WeatherService {
         });
         console.log(this.dayTileList);
       });
+      
+      });
+      console.log("chardata"+this.chartdetails);
+        //   this.dayWiseMap[day].forEach(element => {
+    //    this.templist.push(Math.round(element.main.temp-270));
+    //    this.datelist.push(moment(element.dt * 1000).format('dddd, h:mm a'));
+    //    // console.log(this.templist);
     // Build data structure for the tiles
-
+    // updateGraphDetails(day){
+  
+    //   this.datelist=[];
+    //   this.templist=[];
+    //   this.dayWiseMap[day].forEach(element => {
+    //    this.templist.push(Math.round(element.main.temp-270));
+    //    this.datelist.push(moment(element.dt * 1000).format('dddd, h:mm a'));
+    //    // console.log(this.templist);
+    //   });
+    //}
   }
 
 }

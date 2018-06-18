@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
-import { ChartHTMLTooltip } from 'ng2-google-charts';
+//import { Chart } from 'ng2-google-charts';
 //import { Chart } from 'angular-highcharts/public_api';
 //import { Chart } from 'angular-highcharts';
 //import { Chart } from 'angular-highcharts/chart';
@@ -9,27 +9,21 @@ import { ChartHTMLTooltip } from 'ng2-google-charts';
   templateUrl: './graph.component.html',
   styleUrls: ['./graph.component.css']
 })
-export class GraphComponent implements OnChanges {
-  chart;
-  ngOnChanges(){
-    
-  //     this.chart = new Chart({
-  //       chart: {
-  //         type: 'line'
-  //       },
-  //       title: {
-  //         text: 'Linechart'
-  //       },
-  //       credits: {
-  //         enabled: false
-  //       },
-  //       series: [
-  //         {
-  //           name: 'Line 1',
-  //           data: [1, 2, 3]
-  //         }
-  //       ]
-  //     });
-  // }
+export class GraphComponent  {
+    @Input() chartData;
+    pieChartData =  {
+      chartType: 'LineChart',
+      // dataTable: [
+      //   ['Task', 'Hours per Day'],
+      //   ['Work',     11],
+      //   ['Eat',      2],
+      //   ['Commute',  2],
+      //   ['Watch TV', 2],
+      //   ['Sleep',    7]
+      // ],
+      dataTable: this.chartData,
+      options: {'title': 'Tasks'},
+    };
   }
-}
+  
+

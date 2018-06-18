@@ -14,7 +14,7 @@
   <app-summary [summaryInfo]="weatherService.summary"></app-summary>
    <app-temperature [tempInfo]="weatherService.temperature"></app-temperature>
   <app-tpw [tpwInfo]="weatherService.tpw"></app-tpw>
-  <app-graph></app-graph>
+  <app-graph [chartData]="weatherService.chartdetails"></app-graph>
   <div class="forecast">
     <div class="col-xs-12" id="fore1">
       <div class="row">
