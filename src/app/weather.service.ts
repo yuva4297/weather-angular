@@ -57,13 +57,6 @@ export class WeatherService {
           day: moment(data.list[0].dt * 1000).format("dddd"),
           weatherCondition: data.list[0].weather[0].description
         };
-        this.chartdetails=[];
-      this.dayWiseMap.forEach(element => {
-        
-      this.tempArray.push(Math.round(element.main.temp-270));
-      this.tempArray.push(moment(element.dt * 1000).format('dddd, h:mm a'));
-      this.chartdetails.push(this.tempArray);
-      this.tempArray = [];
         this.tpw = {
           temperature: _.round((parseFloat(data.list[0].main.temp)-270),2),
           pressure: parseInt(data.list[0].main.pressure),
@@ -121,7 +114,12 @@ export class WeatherService {
         });
         console.log(this.dayTileList);
       });
-      
+      this.chartdetails=[];
+      this.dayWiseMap.forEach(element => {
+      this.tempArray.push(Math.round(element.main.temp-270));
+      this.tempArray.push(moment(element.dt * 1000).format('dddd, h:mm a'));
+      this.chartdetails.push(this.tempArray);
+      this.tempArray = [];
       });
       console.log("chardata"+this.chartdetails);
         //   this.dayWiseMap[day].forEach(element => {
