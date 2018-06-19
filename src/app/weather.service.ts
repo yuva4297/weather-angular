@@ -20,6 +20,9 @@ export class WeatherService {
   dayTileList: Array<IDayTile>;
   constructor(private httpService: Http) {
     this.dayWiseMap = {};
+    this.chartdetails=[];
+    this.tempArray = [];
+    this.dayTileList = [];
   }
 
   updateDayInfoFor(dayNum: number) {
@@ -42,6 +45,14 @@ export class WeatherService {
           currentWeatherImageURL: icon
 
     };
+    const currentDayDetails = this.dayWiseMap[dayNum];
+        console.log(currentDayDetails);
+        this.chartdetails = currentDayDetails
+        .map(tempInfoObj => {
+          return [moment(tempInfoObj.dt * 1000).format('h:mm a'), tempInfoObj.main.temp]
+        })
+        console.log("chardata in updation",this.chartdetails);
+      
     
   }
   
@@ -112,16 +123,18 @@ export class WeatherService {
             dayNum: new Date(obj[0].dt * 1000).getDay()
           }
         });
-        console.log(this.dayTileList);
+        console.log("dayTile"+this.dayTileList);
+       
+        // Get the details for the current day
+        const currentDayDetails = this.dayWiseMap[new Date().getDay()];
+        console.log(currentDayDetails);
+        this.chartdetails = currentDayDetails
+        .map(tempInfoObj => {
+          return [moment(tempInfoObj.dt * 1000).format('dddd, h:mm a'), tempInfoObj.main.temp]
+        })
+        console.log("chardata",this.chartdetails);
       });
-      this.chartdetails=[];
-      this.dayWiseMap.forEach(element => {
-      this.tempArray.push(Math.round(element.main.temp-270));
-      this.tempArray.push(moment(element.dt * 1000).format('dddd, h:mm a'));
-      this.chartdetails.push(this.tempArray);
-      this.tempArray = [];
-      });
-      console.log("chardata"+this.chartdetails);
+      
         //   this.dayWiseMap[day].forEach(element => {
     //    this.templist.push(Math.round(element.main.temp-270));
     //    this.datelist.push(moment(element.dt * 1000).format('dddd, h:mm a'));

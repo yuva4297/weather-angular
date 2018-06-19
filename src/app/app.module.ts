@@ -22,11 +22,13 @@ import { Ng2GoogleChartsModule } from 'ng2-google-charts';
     TemperatureComponent,
     TpwComponent,
     DayTileComponent,
-    GraphComponent
+    GraphComponent,
+    
+
   ],
   imports: [
     BrowserModule,
-    ChartsModule,
+    // ChartsModule,
     HttpModule,
     Ng2GoogleChartsModule
   ],
